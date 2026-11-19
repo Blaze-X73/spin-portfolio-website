@@ -133,6 +133,69 @@ header{
   text-decoration: underline;
 }
 
+.play-button-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(../images/wood-bg-2.webp);
+  border-radius: 100%;
+  padding: .2rem;
+  border: .2rem solid var(--yellow);
+  box-shadow: inset 0 0 1rem var(--shadow2),
+  .2rem .2rem 1rem var(--shadow2);
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.play-button{
+  width: 2rem;
+  height: 2rem;
+  margin-left: .7rem;
+  filter: drop-shadow(.2rem .2rem .1rem var(--shadow2));
+  position: relative;
+}
+
+.play-button:after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0% 0%, 90% 50%, 0% 100%);
+  background: url(../images/steel-ball.webp);
+  background-size: 4rem;
+  background-position: center;
+  transition: .3s;
+}
+
+.play-button-wrapper.active{
+  animation: spin 2s linear infinite;
+}
+
+.play-button.playing::after{
+  animation: thump .7s ease-in-out infinite, spin 2s linear infinite reverse;
+}
+
+@keyframes thump {
+  0%{
+    scale: 1;
+  }
+
+  50%{
+    scale: 1.3;
+  }
+
+  100%{
+    scale: 1;
+  }
+}
+
+.play-button-wrapper:hover{
+  scale: 1.05;
+}
+
 
 /*Sidebar Styles*/
 .sidebar{
@@ -307,4 +370,10 @@ main{
   100%{
     transform: translateY(-.2rem) rotate(45deg);
   }
+}
+
+.intro{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
