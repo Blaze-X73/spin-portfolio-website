@@ -121,9 +121,6 @@ header{
   gap: 5rem;
 }
 
-.navbar-links li{
-}
-
 .navbar-links li a{
   color: var(--header-color);
   text-decoration: none;
