@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar">
+      <nav class="navbar" id="nav">
         <div class="logo">SPIN</div>
         <ul class="navbar-links">
           <li><a href="">Home</a></li>
@@ -27,23 +27,23 @@
 
         <audio id="bg-audio"></audio>
 
-        <div class="nav-menu" id="menu-btn">
+        <button class="nav-menu" id="menu-btn">
           <img src="./images/steel-ball.webp" alt="" />
-        </div>
+        </button>
       </nav>
 
       <nav class="sidebar">
         <div class="logo-and-menu">
           <div class="logo">SPIN</div>
-          <div class="nav-menu" id="side-menu-btn">
+          <button class="nav-menu" id="side-menu-btn">
             <img src="./images/steel-ball.webp" alt="" />
-          </div>
+          </button>
         </div>
         <ul class="sidebar-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="">Lessons</a></li>
-          <li><a href="">FAQs</a></li>
-          <li><a href="">About</a></li>
+          <li class="side-links"><a href="#nav">Home</a></li>
+          <li class="side-links"><a href="">Lessons</a></li>
+          <li class="side-links"><a href="">FAQs</a></li>
+          <li class="side-links"><a href="">About</a></li>
         </ul>
       </nav>
     </header>
@@ -58,8 +58,18 @@
         <div class="arrow"></div>
       </section>
 
-      <section class="intro">
-
+      <section class="origin">
+        <section class="origin-text">
+          <h2>Origins</h2>
+          <article>
+            The Spin is a technique that originates from the <strong>Neapolitan Executioners</strong> of Italy. It was developed to grant those given the death penalty a painless death by numbing their bodies before executing them. It is not a brawler's trick, rather a precise skill passed down from generation to generation of the <strong>Zeppeli</strong> family.
+            <br>
+            Though the exact location of the Zeppeli family of doctors and executioners is not known, their execution grounds are said to be located in the Piazza del Mercatoin Sienna, Italy. 
+          </article>
+        </section>
+        <div class="map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d228933.66767637935!2d11.330810683230263!3d43.33068049030967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a2cb0bc693073%3A0xc9997dffbf375cd3!2sPiazza%20del%20Mercato%2C%2053100%20Siena%20SI%2C%20Italy!5e0!3m2!1sen!2sng!4v1795111390563!5m2!1sen!2sng"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
       </section>
       
     </main>
