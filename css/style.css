@@ -71,6 +71,8 @@ header {
   background-size: 300px 300px;
   background-repeat: repeat;
   border-bottom: 0.17rem solid var(--yellow);
+  position: sticky;
+  top: 0;
 }
 
 .navbar.hidden {
@@ -322,9 +324,10 @@ main {
   padding: 1.7rem;
   padding-bottom: 3.7rem;
   flex-grow: 1;
-  height: 82vh;
+  min-height: 100vh;
   text-align: center;
   background-position-y: 100%;
+  z-index: 100;
 }
 
 .welcome-text {
@@ -400,8 +403,11 @@ main {
   align-items: center;
   padding: 1.7rem;
   gap: 2rem;
-  height: 100vh;
+  min-height: 100vh;
   background-position-y: 0;
+  z-index: 100;
+  flex-grow: 1;
+  
 }
 
 .origin-text {
@@ -451,6 +457,7 @@ article strong {
   mask-image: radial-gradient(#000 35%, transparent);
 }
 
+
 .nature {
   display: flex;
   flex-direction: row;
@@ -459,6 +466,8 @@ article strong {
   gap: 2rem;
   min-height: 100vh;
   background-position-y: 0;
+  z-index: 100;
+  
 }
 
 .nature-text {
