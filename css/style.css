@@ -6,6 +6,9 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 :root {
@@ -37,7 +40,9 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-x:hidden;
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
 }
 
 body::before {
@@ -45,7 +50,7 @@ body::before {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   box-shadow: inset -0.4rem 0rem 6rem clamp(1rem, 0.4rem + 2vw, 2rem)
     var(--dark-brown);
@@ -54,8 +59,23 @@ body::before {
 }
 
 header {
-  width: 100%;
   z-index: 999;
+  transition: 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  transform: translate(0);
+  transition: 0.3s transform;
+}
+
+header.nav-hidden {
+  transform: translateY(-5rem);
+}
+
+header.expanded.nav-hidden {
+  transform: translateY(0);
 }
 
 .navbar {
@@ -63,16 +83,15 @@ header {
   font-size: 1.3rem;
   display: flex;
   flex-shrink: 0;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 1.7rem;
+  padding: 0.6rem 1.7rem;
   width: 100%;
   background-image: url(../images/wood-bg-2.webp);
   background-size: 300px 300px;
   background-repeat: repeat;
   border-bottom: 0.17rem solid var(--yellow);
-  position: sticky;
-  top: 0;
 }
 
 .navbar.hidden {
@@ -80,7 +99,7 @@ header {
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: var(--white);
   text-shadow: 0rem 0rem 0.3rem var(--accent-color);
   -webkit-text-stroke: 0.03rem var(--accent-color);
@@ -107,16 +126,15 @@ header {
 }
 
 .nav-menu {
-  width: 3rem;
-  height: 3rem;
   cursor: pointer;
-  clip-path: circle();
   transition: 0.5s;
   border: none;
+  background: transparent;
 }
 
 .nav-menu img {
-  width: 3rem;
+  width: 2.5rem;
+  aspect-ratio: 1 / 1;
   filter: drop-shadow(0.12rem 0.12rem 0.1rem var(--shadow2));
 }
 
@@ -159,9 +177,9 @@ header {
 }
 
 .play-button {
-  width: 2rem;
-  height: 2rem;
-  margin-left: 0.7rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  margin-left: 0.55rem;
   filter: drop-shadow(0.2rem 0.2rem 0.1rem var(--shadow2));
   position: relative;
 }
@@ -215,7 +233,7 @@ header {
   left: 0;
   display: none;
   flex-direction: column;
-  padding: 1.7rem;
+  padding: 0.6rem 1.7rem;
   gap: 1.7rem;
   width: 100%;
   height: 100vh;
@@ -226,10 +244,9 @@ header {
     inset 0rem 0rem 0.2rem 0.1rem var(--yellow),
     inset 0rem 0rem 0.7rem 0.15rem #000;
   background: var(--brown);
-  background-image: url(../images/wood-bg-1.webp);
+  background-image: url(../images/wood-bg-2.webp);
   background-repeat: repeat;
-  background-size: 100px;
-  border: 0.1rem solid var(--yellow);
+  background-size: 300px;
   z-index: 1000;
 }
 
@@ -240,7 +257,6 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #401a0fd3;
   z-index: -1;
 }
 
@@ -258,6 +274,7 @@ header {
   list-style: none;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   width: 100%;
   height: 100%;
 }
@@ -266,19 +283,14 @@ header {
   display: flex;
   align-items: center;
   height: fit-content;
-  flex: 1;
+  padding: 2rem 0 2rem 0;
   background: #2c110a85;
   border: 0.1rem solid var(--yellow);
-  border-top: none;
   border-radius: 1rem;
   box-shadow:
     0.4rem 0.4rem 0.4rem var(--shadow2),
-    inset 0rem 0rem 0.7rem 0.15rem #000;
+    inset 0rem 0rem 0.7rem 0.25rem var(--shadow1);
   transition: 0.3s;
-}
-
-.sidebar-links li:first-child {
-  border-top: 0.1rem solid var(--yellow);
 }
 
 .sidebar-links li a {
@@ -304,9 +316,13 @@ main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
+  min-width: 0;
 }
 
-.welcome, .origin, .nature{
+.welcome,
+.origin,
+.nature {
   background-color: var(--bg-color);
   background-image: url(../images/bg.webp);
   background-size: calc(100vh / 2) calc(100vh / 2);
@@ -407,7 +423,6 @@ main {
   background-position-y: 0;
   z-index: 100;
   flex-grow: 1;
-  
 }
 
 .origin-text {
@@ -457,7 +472,6 @@ article strong {
   mask-image: radial-gradient(#000 35%, transparent);
 }
 
-
 .nature {
   display: flex;
   flex-direction: row;
@@ -467,7 +481,12 @@ article strong {
   min-height: 100vh;
   background-position-y: 0;
   z-index: 100;
-  
+}
+
+.origin,
+.nature {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .nature-text {
@@ -476,94 +495,299 @@ article strong {
   gap: 0.75rem;
 }
 
-
-
 /*Golden Ratio Diagram*/
 .golden-ratio-wrapper {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    font-family: "Cinzel";
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Cinzel";
+}
+
+.golden-ratio-wrapper svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.st0,
+.st1 {
+  fill: none;
+  stroke: #000000;
+  stroke-dasharray: 2200;
+  stroke-dashoffset: 2200;
+}
+
+.st0.scrolled-to,
+.st1.scrolled-to {
+  animation: dash 4s ease-in-out forwards;
+}
+
+.st0 {
+  stroke-width: 2.5;
+}
+.st1 {
+  stroke-width: 5;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Hover colors for Fibonacci squares */
+#spiral rect {
+  fill: #ffffff00;
+  transition: fill 0.6s ease;
+}
+#rect2785:hover {
+  fill: rgba(206, 78, 78, 0.5);
+}
+#rect2783:hover {
+  fill: rgba(172, 74, 41, 0.5);
+}
+#rect3828:hover {
+  fill: rgba(208, 162, 44, 0.5);
+}
+#rect3826:hover {
+  fill: rgba(176, 168, 14, 0.5);
+}
+#rect3824:hover {
+  fill: rgba(127, 173, 0, 0.5);
+}
+#rect3822:hover {
+  fill: rgba(33, 169, 96, 0.5);
+}
+#rect3820:hover {
+  fill: rgba(0, 251, 255, 0.5);
+}
+#rect3818:hover {
+  fill: rgba(0, 51, 255, 0.5);
+}
+#rect3816:hover {
+  fill: rgba(87, 0, 128, 0.5);
+}
+
+/* Fade in formula as spiral finishes */
+.phi-formula {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  opacity: 0;
+  scale: 2.5;
+  transform: translateY(1rem);
+}
+
+.phi-formula.scrolled-to {
+  animation: fadeIn 3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    scale: 1;
+    transform: translateY(0);
+  }
+}
+
+.nature-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 130rem;
+  height: 100cqh;
+}
+
+.nature img{
+  width: 20rem;
+  object-fit: cover;
+  border-radius: 2rem 3.236rem 2rem 3.236rem;
+  transform: rotate(0deg);
+  filter: contrast(110%);
+  box-shadow: .3rem .3rem .3rem var(--shadow2);
+  border-top: 0.06rem solid var(--yellow);
+  border-left: 0.06rem solid var(--yellow);
+  position: absolute;
+}
+
+.nature-img1{
+  right: 0;
+  z-index: 12;
+  opacity: 1;
+  animation: img1 10s ease forwards infinite;
+}
+
+.nature-img2{
+  right: 0;
+  z-index: 11;
+  opacity: 1;
+  animation: img2 10s ease forwards infinite;
+}
+
+.nature-img3{
+  right: 0;
+  z-index: 10;
+  opacity: 1;
+  animation: img3 10s ease forwards infinite;
+}
+
+@keyframes img1{
+  0%{
+    opacity: 1;
   }
 
-  .golden-ratio-wrapper svg {
-    width: 100%;
-    height: auto;
-    display: block;
+  16.6%{
+    opacity: 1;
   }
 
-  .st0, .st1 {
-    fill: none;
-    stroke: #000000;
-    stroke-dasharray: 2200;
-    stroke-dashoffset: 2200;
-    
-  }
-
-  .st0.scrolled-to, .st1.scrolled-to {
-    animation: dash 4s ease-in-out forwards;
-  }
-
-  .st0 { stroke-width: 2.5; }
-  .st1 { stroke-width: 5; }
-
-  @keyframes dash {
-    to { stroke-dashoffset: 0; }
-  }
-
-  /* Hover colors for Fibonacci squares */
-  #spiral rect { fill: #ffffff00; transition: fill 0.6s ease; }
-  #rect2785:hover { fill: rgba(206, 78, 78, 0.5); }
-  #rect2783:hover { fill: rgba(172, 74, 41, 0.5); }
-  #rect3828:hover { fill: rgba(208, 162, 44, 0.5); }
-  #rect3826:hover { fill: rgba(176, 168, 14, 0.5); }
-  #rect3824:hover { fill: rgba(127, 173, 0, 0.5); }
-  #rect3822:hover { fill: rgba(33, 169, 96, 0.5); }
-  #rect3820:hover { fill: rgba(0, 251, 255, 0.5); }
-  #rect3818:hover { fill: rgba(0, 51, 255, 0.5); }
-  #rect3816:hover { fill: rgba(87, 0, 128, 0.5); }
-
-  /* Fade in formula as spiral finishes */
-  .phi-formula {
-    margin-top: 1rem;
-    font-size: 1.25rem;
-    font-weight: 600;
+  33.2%{
     opacity: 0;
-    scale: 2.5;
-    transform: translateY(1rem);
-    
   }
 
-  .phi-formula.scrolled-to{
-    animation: fadeIn 3s ease forwards;
+  49.8%{
+    opacity: 0;
   }
 
-  @keyframes fadeIn {
-    to { opacity: 1; scale: 1; transform: translateY(0);}
+  65.4%{
+    opacity: 0;
   }
 
+  82%{
+    opacity: 0;
+  }
 
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes img2{
+  0%{
+    opacity: 0;
+  }
+
+  16.6%{
+    opacity: 0;
+  }
+
+  33.2%{
+    opacity: 1;
+  }
+
+  49.8%{
+    opacity: 1;
+  }
+
+  65.4%{
+    opacity: 0;
+  }
+
+  82%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}
+
+@keyframes img3{
+  0%{
+    opacity: 0;
+  }
+
+  16.6%{
+    opacity: 0;
+  }
+
+  33.2%{
+    opacity: 0;
+  }
+
+  49.8%{
+    opacity: 0;
+  }
+
+  65.4%{
+    opacity: 1;
+  }
+
+  82%{
+    opacity: 1;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}
 
 /*Responsiveness Media Query*/
 @media (max-width: 712px) {
+  .welcome,
+  .origin,
+  .nature {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .welcome {
+    min-height: 100svh;
+  }
+
+  .welcome h1 {
+    font-size: clamp(2.15rem, 10vw, 3rem);
+  }
+
+  .welcome h2 {
+    font-size: clamp(1.25rem, 6vw, 1.8rem);
+  }
+
   .origin {
     flex-direction: column;
+    min-height: 100svh;
+  }
+
+  .origin-text,
+  .nature-text,
+  .golden-ratio-wrapper {
+    width: 100%;
+    min-width: 0;
   }
 
   .map {
     border-radius: 3%;
-    width: calc(100vw - 4.4rem);
-    height: 60vw;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 3;
   }
 
   .map iframe {
     width: 100%;
-    height: 60vw;
+    height: 100%;
     border-radius: 3%;
     mask-image: radial-gradient(#000 30%, transparent);
   }
 
-  .nature{
+  .nature {
     flex-direction: column;
+    min-height: 100svh;
   }
+
+  .nature img{
+    width: 20rem;
+  }
+  
+  .nature-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 12rem;
+  right: 25%;
+}
 }

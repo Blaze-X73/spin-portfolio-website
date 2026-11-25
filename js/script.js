@@ -1,3 +1,4 @@
+const header = document.querySelector("header");
 const menuBtn = document.querySelector("#menu-btn");
 const navLinks = document.querySelector(".nav-links");
 const sideBar = document.querySelector(".sidebar");
@@ -6,11 +7,13 @@ const sideMenuBtn = document.querySelector("#side-menu-btn");
 const sideLinks = document.getElementsByClassName("side-links");
 
 menuBtn.addEventListener("click", () => {
+  header.classList.toggle("expanded")
   sideBar.classList.toggle("expanded");
   navBar.classList.toggle("hidden");
 });
 
 sideMenuBtn.addEventListener("click", () => {
+  header.classList.toggle("expanded")
   sideBar.classList.toggle("expanded");
   navBar.classList.toggle("hidden");
 });
@@ -20,6 +23,20 @@ for (let i = 0; i < sideLinks.length; i++) {
   sideLink.addEventListener("click", () => {
     sideBar.classList.remove("expanded");
     navBar.classList.remove("hidden");
+  });
+}
+
+//Hidden NavBar
+{
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", () => {
+    if (lastScrollY < window.scrollY) {
+      header.classList.add("nav-hidden");
+    } else {
+      header.classList.remove("nav-hidden");
+    }
+    lastScrollY = window.scrollY;
   });
 }
 
@@ -54,6 +71,3 @@ const phiFormula = document.querySelector(".phi-formula")
   });
 }
 
-if (window.scrollY >= 800) {
-  goldenRatio.classList.add("scrolled-to");
-}
